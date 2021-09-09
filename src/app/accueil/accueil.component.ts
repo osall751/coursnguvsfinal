@@ -13,3 +13,7 @@ export class AccueilComponent implements OnInit {
   }
 
 }
+function add(a: number, b: string){
+  return a+b;
+};
+ 
