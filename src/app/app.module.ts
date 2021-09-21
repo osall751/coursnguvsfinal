@@ -7,12 +7,14 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { FormsModule } from '@angular/forms';
 import { RendezVousComponent } from './rendezVous/rendezVous.component';
 import { RendezVousService } from './services/RendezVous.service';
+import { DicoPipe } from './pipes/dico.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
       AccueilComponent,
-      RendezVousComponent
+      RendezVousComponent,
+      DicoPipe
    ],
   imports: [
     BrowserModule,

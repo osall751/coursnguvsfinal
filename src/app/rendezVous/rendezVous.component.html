@@ -36,10 +36,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let rv of serviceRV.rvs">
-      <td>{{ rv.id }}</td>
-      <td>{{ rv.description }}</td>
-      <td>{{ rv.lieu }}</td>
-      <td>{{ rv.date }}</td>
+      <td>{{ rv.id}}</td>
+      <td>{{ rv.description | titlecase }}</td>
+      <td>{{ rv.lieu | dico}}</td>
+      <td>{{ rv.date | date:'dd/MM/yyyy' }}</td>
       <td><i class="fa fa-trash" style="color: red;" aria-hidden="true" (click)="serviceRV.supprimer(rv.id)"></i></td>
       <td><i class="fa fa-edit" style="color: red;" aria-hidden="true"></i></td>
     </tr>
