@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -11,7 +12,7 @@ export class AccueilComponent implements OnInit {
   maDate = new Date();
   imgSrc = "https://images.seneweb.com/dynamic/modules/news/images/gen/fb/46037cd575b285de551947e6d16838e2fe35b146.jpg"
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
@@ -20,10 +21,10 @@ export class AccueilComponent implements OnInit {
    * valider
    */
   public valider() {
-    if (this.userName === "osall@univ-thies.sn") {
-      alert("Login et mdp saisies OK !!!")
+    if (this.userName.length>0) {
+      this.route.navigate(["rvs", this.userName]);
     } else {
-      alert("Login et mdp saisies KO !!!");
+      alert("Vérifier le login et le mot de passe saisies !!!");
     }
   }
 }
