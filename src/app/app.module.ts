@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FormsModule } from '@angular/forms';
 import { RendezVousComponent } from './rendezVous/rendezVous.component';
+import { RendezVousService } from './services/RendezVous.service';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       AccueilComponent,
       RendezVousComponent
@@ -18,7 +19,7 @@ import { RendezVousComponent } from './rendezVous/rendezVous.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RendezVousService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
