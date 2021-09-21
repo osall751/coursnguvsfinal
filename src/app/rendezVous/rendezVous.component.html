@@ -1,4 +1,41 @@
 <div class="alert alert-danger" role="alert">
   <!-- .alert-primary, .alert-secondary, .alert-success, .alert-danger, .alert-warning, .alert-info, .alert-light, .alert-dark -->
-  Bonjour {{nomUtilisateur}}
+  Bonjour {{ nomUtilisateur }}
 </div>
+
+<input type="number" [(ngModel)]="nombre" />
+
+<!-- <div *ngIf="nombre % 2 == 0; else templateName">
+  <h1>{{ nombre }} est un nombre pair</h1>
+</div>
+<ng-template #templateName>
+  <h1>{{ nombre }} est un nombre impair</h1>
+</ng-template> -->
+
+<!-- <div [ngSwitch]="nombre % 2 == 0">
+  <div *ngSwitchCase="true">
+    <h1>{{ nombre }} est un nombre pair</h1>
+  </div>
+  <div *ngSwitchCase="false">
+    <h1>{{ nombre }} est un nombre impair</h1>
+  </div>
+</div> -->
+
+<table class="table table-striped table-inverse table-responsive">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Lieu</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rv of rvs">
+      <td>{{ rv.id }}</td>
+      <td>{{ rv.description }}</td>
+      <td>{{ rv.lieu }}</td>
+      <td>{{ rv.date }}</td>
+    </tr>
+  </tbody>
+</table>
