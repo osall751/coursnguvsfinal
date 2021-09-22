@@ -5,7 +5,7 @@ import { RendezVousComponent } from './rendezVous/rendezVous.component';
 
 const routes: Routes = [
   {path:'', component:AccueilComponent},
-  {path:'rvs/:username', component:RendezVousComponent}
+  {path:'rvs', component:RendezVousComponent}
 ];
 
 @NgModule({

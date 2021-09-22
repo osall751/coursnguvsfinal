@@ -16,4 +16,10 @@ export class RendezVous {
   public get date(): Date {
     return this._date;
   }
+
+  public set date(v : Date) {
+    this._date = v;
+    console.log(this._date);
+  }
+
 }

@@ -22,7 +22,9 @@ export class AccueilComponent implements OnInit {
    */
   public valider() {
     if (this.userName.length>0) {
-      this.route.navigate(["rvs", this.userName]);
+      // this.route.navigate(["rvs", this.userName]);
+      sessionStorage.setItem("userName",this.userName);
+      this.route.navigate(["rvs"]);
     } else {
       alert("Vérifier le login et le mot de passe saisies !!!");
     }

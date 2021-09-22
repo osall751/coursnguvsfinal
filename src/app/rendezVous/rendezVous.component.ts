@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RendezVous } from '../entites/RendezVous';
 import { RendezVousService } from '../services/RendezVous.service';
 
@@ -24,14 +24,21 @@ export class RendezVousComponent implements OnInit {
   //   new RendezVous(10, "Cours Dev Web", "SUPDECO", new Date("11/05/2022")),
   //   new RendezVous(11, "Cours Santé Sport", "UVS", new Date("10/05/2022")),
   // ]
-  constructor(private routeActive: ActivatedRoute, private _serviceRV:RendezVousService) { }
+  constructor(private route: Router, private _serviceRV: RendezVousService) { }
 
-  public get serviceRV() : RendezVousService {
+  public get serviceRV(): RendezVousService {
     return this._serviceRV;
   }
 
   ngOnInit() {
-    this.nomUtilisateur = this.routeActive.snapshot.paramMap.get("username");
+    // this.nomUtilisateur = this.routeActive.snapshot.paramMap.get("username");
+    if (sessionStorage.getItem("userName") != null) {
+      this.nomUtilisateur = sessionStorage.getItem("userName");
+    }
+    else {
+      // alert("Il faut vous loguer d'abord !!!");
+      this.route.navigateByUrl("/");
+    }
   }
 
   // supprimer(id: any) {
