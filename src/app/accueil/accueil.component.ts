@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +21,10 @@ export class AccueilComponent implements OnInit {
   /**
    * valider
    */
-  public valider() {
+  public valider(loginForm:NgForm) {
+    this.userName=loginForm.controls["email"].value;
+    this.pwd=loginForm.controls["password"].value;
+
     if (this.userName.length>0) {
       // this.route.navigate(["rvs", this.userName]);
       sessionStorage.setItem("userName",this.userName);

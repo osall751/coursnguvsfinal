@@ -17,9 +17,20 @@ export class RendezVous {
     return this._date;
   }
 
-  public set date(v : Date) {
+  public set id(v: number) {
+    this._id = v;
+  }
+
+  public set lieu(v: string) {
+    this._lieu = v;
+  }
+
+  public set description(v: string) {
+    this._description = v;
+  }
+
+  public set date(v: Date) {
     this._date = v;
-    console.log(this._date);
   }
 
 }

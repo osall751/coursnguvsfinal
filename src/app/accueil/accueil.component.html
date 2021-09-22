@@ -10,6 +10,8 @@
    <img [src]="imgSrc" class="rounded mx-auto d-block" alt="..."> -->
 
    <!-- <h1 [hidden]="userName.length<=0">Bienvenue {{userName}}</h1> -->
+
+   {{loginForm.value |json}}
    <div class="container mt-5 pt-5 mb-5">
      <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4 col-xl-4">
@@ -18,16 +20,16 @@
                  <div class="text-center m-auto">
                     <h4 class="text-uppercase text-center">Login</h4>
                  </div>
-                 <div action="#" >
+                 <form #loginForm="ngForm" >
                     <input type="hidden" name="csrftoken" value="ea49375f43c7e6a59c77df1e4de562b3f1350124eeb70e5d5124e4ce3b5251c2b4d12e9aaf2a3ddc618c178c8dc4620b">
                     <div class="form-group mb-3">
                        <label for="emailaddress">Email </label>
-                       <input type="email" name="email" placeholder="Enter email" class="form-control" required="" [(ngModel)]="userName">
+                       <input type="email" name="email" placeholder="Enter email" class="form-control" required="" ngModel>
                     </div>
                     <div class="form-group mb-3">
                        <label for="password">Password</label>
                        <div class="input-group bg-light" id="show_hide_password">
-                          <input type="password" class="form-control" id="password" value="Passwords" name="password"  [(ngModel)]="pwd" placeholder="Enter Password" required="">
+                          <input type="password" class="form-control" id="password" value="Passwords" name="password"  ngModel placeholder="Enter Password" required="">
                           <div class="input-group-addon">
                              <a href=""><i class="fa fa-lg fa-eye" style="padding-top: 10px; padding-left: 10px; padding-right: 10px;" aria-hidden="true"></i></a>
                           </div>
@@ -35,14 +37,14 @@
                     </div>
                     <div class="form-group mb-3">
                        <div class="custom-control custom-checkbox checkbox-success">
-                          <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked (change)="valider()">
+                          <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked (change)="valider(loginForm)">
                           <label class="custom-control-label" for="checkbox-signin">Remember me</label>
                        </div>
                     </div>
                     <div class="form-group mb-0 text-center">
-                       <button class="btn btn-primary btn-block" type="submit" name="submit" (click)="valider()"> Log In </button>
+                       <button class="btn btn-primary btn-block" type="submit" name="submit" (click)="valider(loginForm)"> Log In </button>
                     </div>
-                 </div>
+                 </form>
               </div>
            </div>
         </div>

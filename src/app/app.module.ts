@@ -8,12 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { RendezVousComponent } from './rendezVous/rendezVous.component';
 import { RendezVousService } from './services/RendezVous.service';
 import { DicoPipe } from './pipes/dico.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EntetepageComponent } from './entetepage/entetepage.component';
 import { PiedpageComponent } from './piedpage/piedpage.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
       AccueilComponent,
       RendezVousComponent,
