@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RendezVous } from '../entites/RendezVous';
 import { RendezVousService } from '../services/RendezVous.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-rendezVous',
   templateUrl: './rendezVous.component.html',
@@ -25,7 +23,7 @@ export class RendezVousComponent implements OnInit {
     private route: Router,
     private _serviceRV: RendezVousService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   public get serviceRV(): RendezVousService {
     return this._serviceRV;
