@@ -43,7 +43,12 @@
         <div class="form-group">
           <label for="lieu">Lieu</label>
           <input type="text"
-            class="form-control" name="lieu" id="lieu" aria-describedby="helpId" ngModel placeholder="Lieu ?" [(ngModel)]="rv.lieu">
+            class="form-control" name="lieu" id="lieu" #lieu=ngModel aria-describedby="helpId"  required ngModel placeholder="Lieu ?" [(ngModel)]="rv.lieu">
+            <div *ngIf="lieu.touched">
+                <small class="text-danger" *ngIf="lieu.errors?.required">
+                  Vous devez saisir le lieu
+                </small>
+            </div>
         </div>
         <div class="form-group">
           <label for="Date">Date</label>
@@ -52,7 +57,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" [disabled]="saisieRvform.form.invalid">Save</button>
   </div>
 </ng-template>
 
@@ -61,7 +66,7 @@
 
 <hr>
 
-<pre>{{ closeResult }}</pre>
+<!-- <pre>{{ closeResult }}</pre> -->
 
 <table class="table table-success table-striped">
   <!-- </table>
