@@ -5,26 +5,54 @@
     <h4 class="modal-title" id="modal-basic-title">
       Saisie d'un nouveau Rendez-Vous
     </h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <form #saisieRvform="ngForm">
-      <div class="form-group">
+      <div class="form-group" hidden>
         <label for="id">Id</label>
-        <input type="number" name="id" id="id" disabled class="form-control" placeholder="" [(ngModel)]="rv.id"
-          aria-describedby="helpId" />
+        <input
+          type="number"
+          name="id"
+          id="id"
+          disabled
+          class="form-control"
+          placeholder=""
+          [(ngModel)]="rv.id"
+          aria-describedby="helpId"
+        />
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" name="description" id="description" rows="3"
-          [(ngModel)]="rv.description"></textarea>
+        <textarea
+          class="form-control"
+          name="description"
+          id="description"
+          rows="3"
+          [(ngModel)]="rv.description"
+        ></textarea>
       </div>
       <div class="form-group">
         <label for="lieu">Lieu</label>
-        <input type="text" class="form-control" name="lieu" id="lieu" #lieu="ngModel" aria-describedby="helpId" required
-          ngModel placeholder="Lieu ?" [(ngModel)]="rv.lieu" />
+        <input
+          type="text"
+          class="form-control"
+          name="lieu"
+          id="lieu"
+          #lieu="ngModel"
+          aria-describedby="helpId"
+          required
+          ngModel
+          placeholder="Lieu ?"
+          [(ngModel)]="rv.lieu"
+        />
         <div *ngIf="lieu.touched">
           <small class="text-danger" *ngIf="lieu.errors?.required">
             Vous devez saisir le lieu
@@ -33,14 +61,25 @@
       </div>
       <div class="form-group">
         <label for="Date">Date</label>
-        <input type="date" name="Date" class="form-control" id="Date" [ngModel]="rv.date | date: 'yyyy-MM-dd'"
-          (ngModelChange)="rv.date = $event" [value]="rv.date | date: 'yyyy-MM-dd'" />
+        <input
+          type="date"
+          name="Date"
+          class="form-control"
+          id="Date"
+          [ngModel]="rv.date | date: 'yyyy-MM-dd'"
+          (ngModelChange)="rv.date = $event"
+          [value]="rv.date | date: 'yyyy-MM-dd'"
+        />
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"
-      [disabled]="saisieRvform.form.invalid">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+      [disabled]="saisieRvform.form.invalid"
+    >
       Save
     </button>
   </div>
@@ -51,21 +90,26 @@
 
 <hr />
 
-
 <table class="table table-success table-striped">
   <thead class="thead-inverse">
     <tr>
       <th id="id">
-        <i class="fa fa-id-card" style="color: red" aria-hidden="true">&nbsp;Id</i>
+        <i class="fa fa-id-card" style="color: red" aria-hidden="true"
+          >&nbsp;Id</i
+        >
       </th>
       <th id="desc">
-        <i class="fa fa-notes-medical" style="color: red" aria-hidden="true">&nbsp;Description</i>
+        <i class="fa fa-notes-medical" style="color: red" aria-hidden="true"
+          >&nbsp;Description</i
+        >
       </th>
       <th id="lieu">
         <i class="fas fa-city" style="color: red">&nbsp;Lieu</i>
       </th>
       <th id="date">
-        <i class="fa fa-hourglass" style="color: red" aria-hidden="true">&nbsp;Date</i>
+        <i class="fa fa-hourglass" style="color: red" aria-hidden="true"
+          >&nbsp;Date</i
+        >
       </th>
       <th colspan="2" id="ops">
         <em class="fas fa-toolbox" style="color: red">&nbsp;Operations</em>
@@ -73,16 +117,26 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let rv of serviceRV.rvs">
+    <tr *ngFor="let rv of serviceApiRV.rvs">
       <td>{{ rv.id }}</td>
       <td>{{ rv.description | titlecase }}</td>
       <td>{{ rv.lieu | dico }}</td>
       <td>{{ rv.date | date: "dd/MM/yyyy" }}</td>
       <td>
-        <i class="fa fa-trash" style="color: red" aria-hidden="true" (click)="serviceRV.supprimer(rv.id)"></i>
+        <i
+          class="fa fa-trash"
+          style="color: red"
+          aria-hidden="true"
+          (click)="serviceApiRV.supprimerRV(rv.id)"
+        ></i>
       </td>
       <td>
-        <i class="fa fa-edit" style="color: red" aria-hidden="true" (click)="edit(content, rv)"></i>
+        <i
+          class="fa fa-edit"
+          style="color: red"
+          aria-hidden="true"
+          (click)="edit(content, rv)"
+        ></i>
       </td>
     </tr>
   </tbody>

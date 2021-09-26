@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RendezVousService } from '../services/RendezVous.service';
 
 @Component({
   selector: 'app-entetepage',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class EntetepageComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, public serviceRv:RendezVousService) { }
 
   ngOnInit() {
   }

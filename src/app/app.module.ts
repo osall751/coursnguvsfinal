@@ -11,21 +11,24 @@ import { DicoPipe } from './pipes/dico.pipe';
 import { EntetepageComponent } from './entetepage/entetepage.component';
 import { PiedpageComponent } from './piedpage/piedpage.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HttpClientModule } from "@angular/common/http";
+import { RegistrationComponent } from './registration/registration.component';
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       AccueilComponent,
       RendezVousComponent,
       DicoPipe,
       EntetepageComponent,
-      PiedpageComponent
+      PiedpageComponent,
+      RegistrationComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [RendezVousService],
   bootstrap: [AppComponent]

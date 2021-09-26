@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RendezVousApiService } from '../services/RendezVousApi.service';
 
 @Component({
   selector: 'app-accueil',
@@ -10,31 +11,14 @@ import { Router } from '@angular/router';
 export class AccueilComponent implements OnInit {
   userName = "osall@univ-thies.sn";
   pwd = "passer123";
-  maDate = new Date();
-  imgSrc = "https://images.seneweb.com/dynamic/modules/news/images/gen/fb/46037cd575b285de551947e6d16838e2fe35b146.jpg"
-
-  constructor(private route: Router) { }
+  constructor(private route: Router, private _rvApiService: RendezVousApiService) { }
 
   ngOnInit() {
   }
 
-  /**
-   * valider
-   */
-  public valider(loginForm:NgForm) {
-    this.userName=loginForm.controls["email"].value;
-    this.pwd=loginForm.controls["password"].value;
-
-    if (this.userName.length>0) {
-      // this.route.navigate(["rvs", this.userName]);
-      sessionStorage.setItem("userName",this.userName);
-      this.route.navigate(["rvs"]);
-    } else {
-      alert("Vérifier le login et le mot de passe saisies !!!");
-    }
+  public valider(loginForm: NgForm) {
+    this.userName = loginForm.controls["email"].value;
+    this.pwd = loginForm.controls["password"].value;
+    this._rvApiService.authentification(this.userName, this.pwd);
   }
 }
-
-function add(a: number, b: string) {
-  return a + b;
-};

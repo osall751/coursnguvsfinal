@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RendezVous } from '../entites/RendezVous';
 import { RendezVousService } from '../services/RendezVous.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { RendezVousApiService } from '../services/RendezVousApi.service';
 @Component({
   selector: 'app-rendezVous',
   templateUrl: './rendezVous.component.html',
@@ -22,16 +23,21 @@ export class RendezVousComponent implements OnInit {
   constructor(
     private route: Router,
     private _serviceRV: RendezVousService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _serviceApiRv: RendezVousApiService
   ) { }
 
   public get serviceRV(): RendezVousService {
     return this._serviceRV;
   }
+  public get serviceApiRV(): RendezVousApiService {
+    return this._serviceApiRv;
+  }
 
   ngOnInit() {
     if (sessionStorage.getItem('userName') != null) {
       this.nomUtilisateur = sessionStorage.getItem('userName');
+      this.serviceApiRV.getAllRvs();
     } else {
       this.route.navigateByUrl('/');
       alert("Il faut vous loguer d'abord !!!");
@@ -45,7 +51,7 @@ export class RendezVousComponent implements OnInit {
         (result) => {
           this.closeResult = `Closed with: ${result}`;
           console.log(this.rv);
-          this.serviceRV.createRV(this.rv);
+          this.serviceApiRV.ajouterRV(this.rv);
           this.rv = new RendezVous(
             new Date().getTime() * Math.floor(Math.random() * 1000),
             'Dolor aliquip pariatur minim ad magna aliqua ullamco enim est ut ad commodo irure et. Sit voluptate est id proident in do dolor qui nostrud ullamco aute. Officia veniam consectetur proident officia ea velit consequat cupidatat. Duis id ullamco exercitation est nisi mollit. Aliqua eiusmod occaecat est anim mollit quis nostrud quis aliquip exercitation adipisicing deserunt eu laborum. Tempor ipsum ut nostrud veniam proident. Eu duis ad eu commodo ad in aliqua enim.',
@@ -61,13 +67,12 @@ export class RendezVousComponent implements OnInit {
 
   edit(content: any, rvEdit: RendezVous) {
     this.rv = rvEdit;
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
           console.log(this.rv);
-          this.serviceRV.editerRV(this.rv);
+          this.serviceApiRV.updateRV(this.rv);
           this.rv = new RendezVous(
             new Date().getTime() * Math.floor(Math.random() * 1000),
             'Dolor aliquip pariatur minim ad magna aliqua ullamco enim est ut ad commodo irure et. Sit voluptate est id proident in do dolor qui nostrud ullamco aute. Officia veniam consectetur proident officia ea velit consequat cupidatat. Duis id ullamco exercitation est nisi mollit. Aliqua eiusmod occaecat est anim mollit quis nostrud quis aliquip exercitation adipisicing deserunt eu laborum. Tempor ipsum ut nostrud veniam proident. Eu duis ad eu commodo ad in aliqua enim.',
