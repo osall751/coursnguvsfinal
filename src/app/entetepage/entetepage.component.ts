@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RendezVousService } from '../services/RendezVous.service';
-
 @Component({
   selector: 'app-entetepage',
   templateUrl: './entetepage.component.html',
