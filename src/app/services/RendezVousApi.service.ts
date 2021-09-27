@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { RendezVous } from '../entites/RendezVous';
 import { Utilisateurs } from '../entites/Utilisateurs';
-import axios from 'axios';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,16 +11,22 @@ export class RendezVousApiService {
   httpOtions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
-      Authorization: 'Bearer ' + environment.jwtBearerToken,
+      'Content-Type': 'application/x-www-form-urlencoded'
     })
   }
   rvs: any = [];
 
   constructor(private http: HttpClient) {
-    console.log(environment.jwtBearerToken);
   }
+
   getAllRvs() {
-    this.http.get(this.urlApi + "rvs").subscribe((data: {}) => {
+    this.httpOtions = {
+      headers: new HttpHeaders({
+        "content-type": "application/json",
+        Authorization: 'Bearer ' + sessionStorage.getItem("jwtBearerToken"),
+      })
+    }
+    this.http.get(this.urlApi + "rvs", this.httpOtions).subscribe((data: {}) => {
       this.rvs = data;
     });
   }
@@ -76,8 +81,7 @@ export class RendezVousApiService {
       "identifier": userName,
       "password": pwd
     }).subscribe((data: any) => {
-      console.log(data);
-      environment.jwtBearerToken = data.jwt;
+      sessionStorage.setItem("jwtBearerToken", data.jwt);
       sessionStorage.setItem("userName", data.user.username + " " + data.user.email);
       location.assign("rvs");
     }, (error) => {

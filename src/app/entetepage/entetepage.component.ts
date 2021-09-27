@@ -17,6 +17,7 @@ export class EntetepageComponent implements OnInit {
   deconnexion() {
     if (sessionStorage.getItem("userName") != null) {
       sessionStorage.removeItem("userName");
+      sessionStorage.removeItem("jwtBearerToken");
     }
     this.route.navigateByUrl("/");
   }
